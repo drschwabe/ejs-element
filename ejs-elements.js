@@ -32,7 +32,15 @@ var ejsElem = {
     var renderedTemplate = ejs.render(elem.template, { state: state }) 
     $(elementName)[0].outerHTML = renderedTemplate   
     $(elementName).removeClass('invisible')
-  } 
+  }, 
+  renderAll : (state) => {
+    ejsElem.ents.forEach((elem) => {
+      var renderedTemplate = ejs.render(elem.template, { state: state })
+      $(elem.name).each((index, elem) => {
+        elem.outerHTML = renderedTemplate
+      }).removeClass('invisible')
+    })
+  }
 }
 
 module.exports = ejsElem
