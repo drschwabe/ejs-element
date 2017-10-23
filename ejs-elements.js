@@ -7,11 +7,12 @@ const $ = require('jquery'),
 var ejsElem = { 
   ent : null, 
   ents : [],
-  init : (elementName) => {
+  init : (elementName, state) => {
     var elem = {
-      template : ejsElem.parse(elementName) , 
+      template : ejsElem.parse(elementName),
       name :  elementName
     }
+    if(state) elem = _.extend(elem, state) //< Apply initial state if provided.
     ejsElem.ents.push(elem)
   },
   parse : (elementName) => { 
@@ -29,6 +30,8 @@ var ejsElem = {
   }, 
   render : (elementName, state) => { 
     var elem = _.findWhere(ejsElem.ents, { name: elementName})
+    state.element = elem //< Reference to the element obj; so templates can use a generic 
+    //obj path to access element state ie: <? state.element ?>
     var renderedTemplate = ejs.render(elem.template, { state: state }) 
     $(elementName)[0].outerHTML = renderedTemplate   
     $(elementName).removeClass('invisible')
