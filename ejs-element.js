@@ -29,6 +29,7 @@ var ejsElem = {
     return _.unescape(template) 
   }, 
   render : (elementName, state) => { 
+    //debugger
     var elem = _.findWhere(ejsElem.ents, { name: elementName})
     state.element = elem //< Reference to the element obj; so templates can use a generic 
     //obj path to access element state ie: <? state.element ?>
