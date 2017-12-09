@@ -4,7 +4,7 @@
 
 From your terminal: 
 ```bash
-npm install ejs-element
+npm install ejs-element --save
 ```
 
 In your script: 
@@ -18,7 +18,7 @@ ejsElem.init('my-crate', {
 
 In your HTML page: 
 ```html
-<my-crate-element>
+<my-crate>
   <h1 class="<?= state.ready ? 'blue' : 'red' ?>">Crate contents:</h4>
   <ul>
     <?= state.payload.forEach((function(item) { ?>
@@ -28,7 +28,7 @@ In your HTML page:
   <? if(state.ready) { ?>
     <h2>READY</h2>
   <? } ?>
-</my-crate-element
+</my-crate>
 ```
 
 
@@ -36,7 +36,14 @@ In your HTML page:
 ejsElem.render('my-crate-element', state)
 ```
 
-### how it works
-The init function simply finds your element and parses it for EJS.  
+### api
+
+#### init(name, [state])
+```
+ejsElem.init('element-name', { victory : true })
+```
+
+Finds your element (ie- 'element-name'), parses it for EJS, and stores it in the ejsElem.elems array. Optionally provide an initial state for the element, the properties of which are stored on the element itself and used as default state for future renders (ie- so that providing an explicit state with each render is not required). 
 
  
+MIT

@@ -1,6 +1,7 @@
 {
   "name": "ejs-element",
   "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Quickly use EJS within custom elements",
   "author": "",
   "main": "ejs-element.js",
