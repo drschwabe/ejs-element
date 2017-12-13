@@ -1,14 +1,20 @@
 {
   "name": "ejs-element",
-  "version": "0.0.2",
   "version": "0.0.3",
   "description": "Quickly use EJS within custom elements",
-  "author": "",
   "main": "ejs-element.js",
   "license": "MIT",
+  "scripts": {
+    "test": "tape test/test.js | tap-spec"
+  },
   "dependencies": {
     "ejs": "2.5.7",
     "jquery": "3.2.1",
     "underscore": "1.8.3"
+  },
+  "devDependencies": {
+    "nightmare": "2.10.0",
+    "tap-spec": "4.1.1",
+    "tape": "4.8.0"
   }
 }
