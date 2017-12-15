@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>ejs-element Test</title>
+</head>
+
+<body>
+  <p>This is a paragraph element.  It can't have variables or logic.</p>
+
+  <hr />
+
+  <my-element>
+    This is an ejs-element.  It can have <?= state.variable ?>.
+  </my-element>
+
+  <hr />
+
+  <another-element>
+    This is another ejs-element.
+    <? if(state.canDoLogic) { ?>
+      It can do logic.
+    <? } ?>
+    <? if(state.showExtra) { ?>
+      Much wow.
+    <? } ?>
+  </another-element>
+
+  <script src="basic.bundle.js"></script>
+</body>
+</html>

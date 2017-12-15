@@ -1,10 +1,11 @@
 {
   "name": "ejs-element",
-  "version": "0.0.3",
-  "description": "Quickly use EJS within custom elements",
+  "version": "0.0.9",
+  "description": "Quickly use and render EJS",
   "main": "ejs-element.js",
   "license": "MIT",
   "scripts": {
+    "compileTest": "browserify test/basic.js > test/basic.bundle.js",
     "test": "tape test/test.js | tap-spec"
   },
   "dependencies": {
@@ -13,8 +14,10 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
+    "browserify": "^14.5.0",
     "nightmare": "2.10.0",
     "tap-spec": "4.1.1",
-    "tape": "4.8.0"
+    "tape": "4.8.0",
+    "underscore.string": "3.3.4"
   }
 }
