@@ -1,6 +1,10 @@
 <html>
 <head>
   <title>ejs-element Test</title>
+  <style>
+    .red { color: red; }
+    .blue { color: blue; }
+  </style>
 </head>
 
 <body>
@@ -23,6 +27,18 @@
       Much wow.
     <? } ?>
   </another-element>
+
+  <my-crate>
+    <h1 class="<?= state.ready ? 'blue' : 'red' ?>">Crate contents:</h4>
+    <ul>
+      <? state.payload.forEach( function(item) { ?>
+        <li><?= item ?></li>
+      <? }) ?>
+    </ul>
+    <? if(state.ready) { ?>
+      <h2>READY</h2>
+    <? } ?>
+  </my-crate>
 
   <script src="basic.bundle.js"></script>
 </body>

@@ -2,7 +2,6 @@ var test = require('tape'),
     Nightmare = require('nightmare'), 
     nightmare = new Nightmare(), 
     _ = require('underscore'),     
-    _s = require('underscore.string')
 
 test('Test opens', (t) => {
   t.plan(1)
@@ -19,13 +18,14 @@ test('Test opens', (t) => {
 })
 
 test('Basic ejs-element features work as expected', (t) => {
-  t.plan(2)
+  t.plan(3)
 
   nightmare  
   .goto('file://' + process.cwd() + '/test/basic.html')
   .evaluate(() => {
     return [document.getElementsByTagName("my-element")[0].innerHTML, 
-    document.getElementsByTagName("another-element")[0].innerHTML]
+    document.getElementsByTagName("another-element")[0].innerHTML,
+    document.getElementsByTagName("my-crate")[0].innerHTML]
   })
   .end()
   .then((results) => {
@@ -35,6 +35,7 @@ test('Basic ejs-element features work as expected', (t) => {
     t.equals(results[0], 'This is an ejs-element. It can have apples.', 'ejs-element renders with a variable OK')
     t.equals(results[1], 'This is another ejs-element. It can do logic.', 'ejs-element renders logic OK')
 
+    t.ok(_s.include(results[2], ('apples'))  && _s.include(results[2], 'oranges') && _s.include(results[2], 'raisins'), 'Iteratable list renders OK' )
   })
   .catch((err) => {
     console.log(err)
