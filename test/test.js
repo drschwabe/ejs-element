@@ -1,7 +1,8 @@
 var test = require('tape'), 
     Nightmare = require('nightmare'), 
     nightmare = new Nightmare(), 
-    _ = require('underscore'),     
+    _ = require('underscore'), 
+    _s = require('underscore.string')     
 
 test('Test opens', (t) => {
   t.plan(1)

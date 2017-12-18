@@ -1,9 +1,18 @@
 {
   "name": "ejs-element",
-  "version": "0.0.9",
-  "description": "Quickly use and render EJS",
+  "version": "1.0.0",
+  "description": "Quickly use EJS",
   "main": "ejs-element.js",
   "license": "MIT",
+  "author": {
+    "name": "Derrick Schwabe",
+    "email": "admin@nerdbusiness.com"
+  },
+  "homepage": "https://github.com/drschwabe/ejs-element",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drschwabe/ejs-element"
+  },  
   "scripts": {
     "pretest": "browserify test/basic.js > test/basic.bundle.js",
     "test": "tape test/test.js | tap-spec"
@@ -14,7 +23,7 @@
     "underscore": "1.8.3"
   },
   "devDependencies": {
-    "browserify": "^14.5.0",
+    "browserify": "14.5.0",
     "nightmare": "2.10.0",
     "tap-spec": "4.1.1",
     "tape": "4.8.0",
