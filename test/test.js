@@ -50,11 +50,30 @@ test('Single element with renderAll', (t) => {
   .evaluate(() => {
     return document.getElementsByTagName("my-element")[0].innerHTML
   })
-  .end()
   .then((result) => {
     console.log(result)
     result = _s(result).replaceAll('\n', '').clean().value()
     t.equals(result, 'This is an ejs-element. It can have apples.', 'ejs-element renders with a variable OK')
   }) 
 
+})
+
+test('Two elements with renderAll', (t) => {
+  t.plan(2)
+
+  nightmare
+  .goto('file://' + process.cwd() + '/test/two-elements-render-all.html')
+  .evaluate(() => {
+    return [document.getElementsByTagName("my-element")[0].innerHTML,
+      document.getElementsByTagName("another-element")[0].innerHTML]
+  })
+  .end()
+  .then((results) => {
+    console.log(results)
+    results = _.map(results, (result) => {
+      return _s(result).replaceAll('\n', '').clean().value()
+    })
+    t.equals(results[0], 'This is an ejs-element. It can have apples.', 'ejs-element renders first element OK')
+    t.equals(results[1], 'This is another ejs-element. It can have apples and cherries.', 'ejs-element renders 2nd element OK')
+  })
 })
