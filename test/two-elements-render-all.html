@@ -1,0 +1,23 @@
+<html>
+<head>
+  <title>ejs-element Test</title>
+</head>
+
+<body>
+  <p>This is a paragraph element.  It can't have variables or logic.</p>
+
+  <hr />
+
+  <my-element>
+    This is an ejs-element.  It can have <?= state.variable ?>.
+  </my-element>
+
+  <hr />
+
+  <another-element>
+    This is another ejs-element.  It can have <?= state.variable ?> and <?= state.another_variable ?>.
+  </another-element>  
+
+  <script src="two-elements-render-all.bundle.js"></script>
+</body>
+</html>

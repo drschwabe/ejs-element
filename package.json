@@ -14,11 +14,12 @@
     "url": "https://github.com/drschwabe/ejs-element"
   },
   "scripts": {
-    "pretest": "browserify test/basic.js > test/basic.bundle.js",
+    "pretest": "browserify test/basic.js > test/basic.bundle.js; browserify test/single-element-render-all.js > test/single-element-render-all.bundle.js; browserify test/two-elements-render-all.js > test/two-elements-render-all.bundle.js",
     "test": "tape test/test.js | tap-spec"
   },
   "dependencies": {
     "ejs": "2.5.7",
+    "jquery": "3.2.1",
     "underscore": "1.8.3"
   },
   "devDependencies": {

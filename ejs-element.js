@@ -42,9 +42,11 @@ var ejsElem = {
     ejsElem.ents.forEach((elem) => {
       if(!state) state = elem
       var renderedTemplate = ejs.render(elem.template, { state: state })
-      document.getElementsByTagName(elem.name).forEach((index,elem)=>{
-          elem.outerHTML = renderedTemplate
-      }).classList.remove("invisible")
+      var children = [document.getElementsByTagName(elem.name)];
+      children.forEach((elem,index)=>{
+          elem[0].outerHTML = renderedTemplate
+          elem[0].classList.remove("invisible")
+      })
     })
   }
 }
