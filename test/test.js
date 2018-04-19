@@ -28,7 +28,6 @@ test('Basic ejs-element features work as expected', (t) => {
     document.getElementsByTagName("another-element")[0].innerHTML,
     document.getElementsByTagName("my-crate")[0].innerHTML]
   })
-  .end()
   .then((results) => {
     results = _.map(results, (result) => {
       return _s(result).replaceAll('\n', '').clean().value()
@@ -41,4 +40,21 @@ test('Basic ejs-element features work as expected', (t) => {
   .catch((err) => {
     console.log(err)
   }) 
+})
+
+test('Single element with renderAll', (t) => {
+  t.plan(1)
+
+  nightmare
+  .goto('file://' + process.cwd() + '/test/single-element-render-all.html')
+  .evaluate(() => {
+    return document.getElementsByTagName("my-element")[0].innerHTML
+  })
+  .end()
+  .then((result) => {
+    console.log(result)
+    result = _s(result).replaceAll('\n', '').clean().value()
+    t.equals(result, 'This is an ejs-element. It can have apples.', 'ejs-element renders with a variable OK')
+  }) 
+
 })

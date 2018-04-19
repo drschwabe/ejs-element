@@ -14,7 +14,7 @@
     "url": "https://github.com/drschwabe/ejs-element"
   },  
   "scripts": {
-    "pretest": "browserify test/basic.js > test/basic.bundle.js",
+    "pretest": "browserify test/basic.js > test/basic.bundle.js; browserify test/single-element-render-all.js > test/single-element-render-all.bundle.js",
     "test": "tape test/test.js | tap-spec"
   },
   "dependencies": {
