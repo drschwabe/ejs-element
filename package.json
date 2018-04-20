@@ -1,6 +1,6 @@
 {
   "name": "ejs-element",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Quickly use EJS",
   "main": "ejs-element.js",
   "license": "MIT",
