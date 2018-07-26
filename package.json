@@ -9,6 +9,14 @@
     "email": "admin@nerdbusiness.com"
   },
   "homepage": "https://github.com/drschwabe/ejs-element",
+  "keywords": [
+    "ejs",
+    "element",
+    "template",
+    "templating", 
+    "UI", 
+    "rendering"
+  ],  
   "repository": {
     "type": "git",
     "url": "https://github.com/drschwabe/ejs-element"
