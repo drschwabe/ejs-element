@@ -51,6 +51,11 @@ var ejsElem = {
           elem[0].classList.remove("invisible")
       })
     })
+  }, 
+  get : (elementName) => {
+    //find the element
+    var elem = _.findWhere(ejsElem.ents, { name: elementName})
+    return elem //< (includes template and state)
   }
 }
 
