@@ -1,6 +1,6 @@
 {
   "name": "ejs-element",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Quickly use EJS",
   "main": "ejs-element.js",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "url": "https://github.com/drschwabe/ejs-element"
   },
   "scripts": {
-    "pretest": "browserify test/basic.js > test/basic.bundle.js; browserify test/single-element-render-all.js > test/single-element-render-all.bundle.js; browserify test/two-elements-render-all.js > test/two-elements-render-all.bundle.js",
+    "pretest": "browserify test/basic.js > test/basic.bundle.js; browserify test/single-element-render-all.js > test/single-element-render-all.bundle.js; browserify test/two-elements-render-all.js > test/two-elements-render-all.bundle.js; browserify test/raw-objects.js > test/raw-objects.bundle.js",
     "test": "tape test/test.js | tap-spec"
   },
   "dependencies": {

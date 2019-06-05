@@ -6,15 +6,25 @@ const _ = require('underscore')
 var ejsElem = {
   ent : null,
   ents : [],
-  init : (elementName, state, render) => {
-    var elem = {
-      template : ejsElem.parse(elementName),
-      name :  elementName
+  init : (elementNameOrHTML, state, render) => {
+    //accommodate for simply element name ie- 'my-element' or an HTML string
+    let isHTML = elementNameOrHTML.search('<') > -1  ? true : false
+    let name
+    if(isHTML) {
+      let tagFirstCharacter = elementNameOrHTML.search('<'),
+          tagLastCharacter = elementNameOrHTML.search('>')
+      name = elementNameOrHTML.slice(tagFirstCharacter + 1, tagLastCharacter)
+    } else {
+      name = elementNameOrHTML
     }
-    if(!elem.template) return console.warn('cannot init, no element with tag name: ' + elementName)
+    var elem = {
+      template : isHTML ? elementNameOrHTML : ejsElem.parse(elementNameOrHTML),
+      name :  name
+    }
+    if(!elem.template) return console.warn('cannot init, no element in DOM with tag name: ' + name + '(and no HTML string was provided)')
     if(state) elem = _.extend(elem, state) //< Apply initial state if provided.
     ejsElem.ents.push(elem)
-    if(render) ejsElem.render(elementName)
+    if(render) ejsElem.render(name)
   },
   parse : (elementName) => {
     let element = document.getElementsByTagName(elementName)[0]
@@ -30,15 +40,26 @@ var ejsElem = {
     while(template.indexOf("?-->") >= 0) { template = template.replace("?-->", "?>") }
     return _.unescape(template)
   },
-  render : (elementName, state) => {
+  render : (elementName, state, renderDom) => {
     var elem = _.findWhere(ejsElem.ents, { name: elementName})
-    if(!elem) return console.warn('cannot render, no element with tag name: ' + elementName)
+    if(!elem) return console.warn('cannot render, no element yet established with tag name: ' + elementName)
     if(!state) state = elem //< If no state is provided, use the element itself:
     state.element = elem //< Reference to the element obj; so templates can use a generic
     //obj path to access the current element state ie: <? state.element ?>
     var renderedTemplate = ejs.render(elem.template, { state: state })
-    document.getElementsByTagName(elementName)[0].outerHTML = renderedTemplate
-    document.getElementsByTagName(elementName)[0].classList.remove("invisible")
+    if(renderDom === false) {
+      elem.rendered = renderedTemplate
+      return renderedTemplate
+    }
+    if(document.getElementsByTagName(elementName).length) {
+      //otherwise find the element in the DOM and render it there:
+      document.getElementsByTagName(elementName)[0].outerHTML = renderedTemplate
+      document.getElementsByTagName(elementName)[0].classList.remove("invisible")
+    } else { //if the element is not found in DOM, just render it as property:
+      elem.rendered = renderedTemplate
+      return renderedTemplate
+    }
+
   },
   renderAll : (state) => {
     ejsElem.ents.forEach((elem) => {
