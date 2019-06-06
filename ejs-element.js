@@ -40,9 +40,13 @@ var ejsElem = {
     while(template.indexOf("?-->") >= 0) { template = template.replace("?-->", "?>") }
     return _.unescape(template)
   },
-  render : (elementName, state, renderDom) => {
-    var elem = _.findWhere(ejsElem.ents, { name: elementName})
-    if(!elem) return console.warn('cannot render, no element yet established with tag name: ' + elementName)
+  render : (elementNameOrHTML, state, renderDom) => {
+    let isHTML = elementNameOrHTML.search('<') > -1  ? true : false
+    if(isHTML) {
+      return ejs.render(elementNameOrHTML, { state: state })
+    }
+    var elem = _.findWhere(ejsElem.ents, { name: elementNameOrHTML})
+    if(!elem) return console.warn('cannot render, no element yet established with tag name: ' + elementNameOrHTML)
     if(!state) state = elem //< If no state is provided, use the element itself:
     state.element = elem //< Reference to the element obj; so templates can use a generic
     //obj path to access the current element state ie: <? state.element ?>
@@ -51,10 +55,10 @@ var ejsElem = {
       elem.rendered = renderedTemplate
       return renderedTemplate
     }
-    if(document.getElementsByTagName(elementName).length) {
+    if(document.getElementsByTagName(elementNameOrHTML).length) {
       //otherwise find the element in the DOM and render it there:
-      document.getElementsByTagName(elementName)[0].outerHTML = renderedTemplate
-      document.getElementsByTagName(elementName)[0].classList.remove("invisible")
+      document.getElementsByTagName(elementNameOrHTML)[0].outerHTML = renderedTemplate
+      document.getElementsByTagName(elementNameOrHTML)[0].classList.remove("invisible")
     } else { //if the element is not found in DOM, just render it as property:
       elem.rendered = renderedTemplate
       return renderedTemplate

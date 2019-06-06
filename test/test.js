@@ -81,7 +81,7 @@ test('Two elements with renderAll', (t) => {
 
 
 test('Can use raw HTML / JS objects instead of element name / DOM', (t) => {
-  t.plan(2)
+  t.plan(3)
   let results = {}
   nightmare
   .goto('file://' + process.cwd() + '/test/raw-objects.html')
@@ -99,5 +99,6 @@ test('Can use raw HTML / JS objects instead of element name / DOM', (t) => {
 `
     t.equals( results.window.ejsElem.ents[0].rendered, expectedRenderedOutput , 'element is rendered in state as expected')
     t.equals( results.window.renderedElement, expectedRenderedOutput, 'rendered output was returned to generic variable OK' )
+    t.equals( results.window.renderedElementRawHTML, expectedRenderedOutput, 'rendered output was returned to generic variable OK' )
   })
 })

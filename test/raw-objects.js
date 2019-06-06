@@ -10,3 +10,6 @@ var html = `
 
 ejsElem.init(html)
 global.renderedElement = ejsElem.render('my-element', { message : message })
+
+
+global.renderedElementRawHTML = ejsElem.render(html, { message : message })
