@@ -1,6 +1,6 @@
 {
   "name": "ejs-element",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Quickly use EJS",
   "main": "ejs-element.js",
   "license": "MIT",
@@ -13,10 +13,10 @@
     "ejs",
     "element",
     "template",
-    "templating", 
-    "UI", 
+    "templating",
+    "UI",
     "rendering"
-  ],  
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/drschwabe/ejs-element"
@@ -34,6 +34,6 @@
     "nightmare": "2.10.0",
     "tap-spec": "4.1.1",
     "tape": "4.8.0",
-    "underscore.string": "3.3.4"
+    "underscore.string": "3.3.5"
   }
 }
