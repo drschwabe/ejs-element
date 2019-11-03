@@ -59,6 +59,7 @@ var ejsElem = {
       //otherwise find the element in the DOM and render it there:
       document.getElementsByTagName(elementNameOrHTML)[0].outerHTML = renderedTemplate
       document.getElementsByTagName(elementNameOrHTML)[0].classList.remove("invisible")
+      document.getElementsByTagName(elementNameOrHTML)[0].classList.remove("hide")
     } else { //if the element is not found in DOM, just render it as property:
       elem.rendered = renderedTemplate
       return renderedTemplate
@@ -74,6 +75,7 @@ var ejsElem = {
       children.forEach((elem,index)=>{
           elem[0].outerHTML = renderedTemplate
           elem[0].classList.remove("invisible")
+          document.getElementsByTagName(elementNameOrHTML)[0].classList.remove("hide")          
       })
     })
   }, 
