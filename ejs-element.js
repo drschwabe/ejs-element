@@ -75,7 +75,7 @@ var ejsElem = {
       children.forEach((elem,index)=>{
           elem[0].outerHTML = renderedTemplate
           elem[0].classList.remove("invisible")
-          document.getElementsByTagName(elementNameOrHTML)[0].classList.remove("hide")          
+          elem[0].classList.remove("hide")
       })
     })
   }, 
