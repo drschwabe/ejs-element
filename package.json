@@ -1,6 +1,6 @@
 {
   "name": "ejs-element",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Quickly use EJS",
   "main": "ejs-element.js",
   "license": "MIT",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "ejs": "2.5.7",
-    "underscore": "1.8.3"
+    "underscore": "1.12.1"
   },
   "devDependencies": {
     "browserify": "14.5.0",
